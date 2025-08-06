@@ -13,7 +13,7 @@ export default function ThemeToggle () {
 
   useEffect(() => {
     setMounted(true);
-  });
+  }, []);
 
   if (!mounted) {
     return <div className="flex items-center space-x-2">
@@ -26,7 +26,7 @@ export default function ThemeToggle () {
 
   return <div className="flex items-center space-x-2">
     <Sun className={`h-4 w-4 transition-colors ${theme === "light" ? "text-yellow-500" : "text-muted-foreground"}`}/>
-    <Switch checked={theme === "dark"} onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}/>
+    <Switch checked={(theme ?? "light") === "dark"} onCheckedChange={(val) => setTheme(val ? "dark" : "light")}/>
     <Moon className={`h-4 w-4 transition-colors ${theme === "dark" ? "text-yellow-500" : "text-muted-foreground"}`}/>
   </div>
 }

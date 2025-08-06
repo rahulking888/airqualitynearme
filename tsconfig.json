@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "api/Aqi.js", "components/Showdata.jsx", "components/GeoLocation.tsx", "app/current-air-quality/[city]/page.tsx"],
   "exclude": ["node_modules"]
 }

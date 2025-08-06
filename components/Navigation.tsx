@@ -9,7 +9,7 @@ export default function Navigation() {
   <div className="flex justify-between items-center h-16">
     {/*Logo*/}
     <div className="flex-shrink-0">
-      <h1 className="text-xl font-serif font-bold text-foreground">AirQualityNearMe</h1>
+     <Link href={"/"}> <h1 className="text-xl font-serif font-bold text-foreground">AirQualityNearMe</h1> </Link>
     </div>
     {/*Desktop Navigation*/}
     <div className="hidden md:flex items-center space-x-8">

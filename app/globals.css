@@ -133,6 +133,3 @@
   background: var(--primary);
   border-radius: 4px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary) / 0.8;
-}

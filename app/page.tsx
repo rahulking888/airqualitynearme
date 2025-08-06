@@ -1,7 +1,8 @@
-import CategoriesSection from "@/components/CategoriesSection";
-import FeaturedSection from "@/components/FeaturedSection";
-import HeroSection from "@/components/HeroSection";
-import QuotesSection from "@/components/QuotesSection";
+
+
+import CitySearch from "@/components/CitySearch";
+import Showdata from "@/components/Showdata";
+
 
 
 export default function Home() {
@@ -9,11 +10,8 @@ export default function Home() {
        <div className="min-h-screen bg-background">
         
         <main>
-          <HeroSection/>
-          <FeaturedSection/>
-          <CategoriesSection/>
-          <QuotesSection/>
-          
+           <CitySearch/>
+           <Showdata/>
         </main>
        </div>
   );

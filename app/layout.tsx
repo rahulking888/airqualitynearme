@@ -13,8 +13,8 @@ const playfair = Playfair_Display({subsets: ["latin"], variable: "--font-playfai
 
 
 export const metadata: Metadata = {
-  title: "Realtime airquality",
-  description: "airquality app",
+  title: "Air Quality Near Me",
+  description: "With 'Air Quality Near Me' check current air quality pollution levels in your area. Get accurate AQI, PM2.5 and weather updates instantly",
 };
 
 export default function RootLayout({
