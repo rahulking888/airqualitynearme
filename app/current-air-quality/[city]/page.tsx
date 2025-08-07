@@ -1,19 +1,27 @@
-// app/city/[city]/page.tsx
-
 import CitySearch from "@/components/CitySearch";
+import { Description } from "@radix-ui/react-dialog";
+import { title } from "process";
 
-// type Props = {
-//   params: {
-//     city: string;
-//   };
-// };
+export async function generateMetadata ({ params }: {params: Promise<{city: string}>}) {
+  const {city} = await params;
+  const cityName = city.replace(/-/g, " ")
+      .split(" ")
+      .map(word=>
+        word.charAt(0).toUpperCase() +
+        word.slice(1))
+        .join(" ");
 
+
+  return {
+          title: `Current Air Quality ${cityName}`,
+          description: `Check the current air quality in ${cityName}: AQI, PM 2.5 and humidity levels. Stay updated and protect your health.`
+  };
+}
 
 
 
 export default async function CityPage({ params }: {params: Promise<{city: string}>} ) {
   const {city} = await params;
-//const slug = decodeURIComponent(params.city);
   const cityName = city.replace(/-/g, " ");
   
   // Radar API call
