@@ -1,9 +1,8 @@
 import CitySearch from "@/components/CitySearch";
-import { Description } from "@radix-ui/react-dialog";
-import { title } from "process";
 
 export async function generateMetadata ({ params }: {params: Promise<{city: string}>}) {
   const {city} = await params;
+  const siteURL = "https://airqualitynearme.org";
   const cityName = city.replace(/-/g, " ")
       .split(" ")
       .map(word=>
@@ -14,7 +13,10 @@ export async function generateMetadata ({ params }: {params: Promise<{city: stri
 
   return {
           title: `Current Air Quality ${cityName}`,
-          description: `Check the current air quality in ${cityName}: AQI, PM 2.5 and humidity levels. Stay updated and protect your health.`
+          description: `Check the current air quality in ${cityName}: AQI, PM 2.5 and humidity levels. Stay updated and protect your health.`,
+          alternates: {
+               canonical: `${siteURL}/current-air-quality/${city}`,
+          },
   };
 }
 
@@ -91,7 +93,7 @@ export default async function CityPage({ params }: {params: Promise<{city: strin
   }
 
   return (
-    <div className="p-6 text-center">
+    <main className="p-6 text-center">
       <CitySearch />
       <h2 className="font-bold text-3xl m-10 font-serif">
         {location.city || cityName} current air Quality
@@ -105,6 +107,6 @@ export default async function CityPage({ params }: {params: Promise<{city: strin
       <p>Temperature: {aqiData.data.current.weather.tp} °C</p>
       <p>Wind speed: {aqiData.data.current.weather.ws} km/h</p>
       <p>Humidity: {aqiData.data.current.weather.hu} %</p>
-    </div>
+    </main>
   );
 }
