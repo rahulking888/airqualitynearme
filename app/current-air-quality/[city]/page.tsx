@@ -91,9 +91,92 @@ export default async function CityPage({ params }: {params: Promise<{city: strin
 
     return null;
   }
+  //Schema and Breadcrumbs data start
+ const schemaData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name":`Current Air Quality in ${cityName}`,
+    "description": `Check AQI, PM2.5, humidity, temperature in ${cityName}. Updated every hour.`,
+    "url": `https://airqualitynearme.org/current-air-quality/${cityName}`,
+    "datePublished": "2025-08-08T00:00:00.000Z",
+    "dateModified": new Date().toISOString(),
+    "inLanguage": "en",
+    "author": {
+      "@type": "Organization",
+      "name": "Air Quality Near Me"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Air Quality Near Me"
+    },
+    "mainEntity": {
+      "@type": "Thing",
+      "name": `Air Quality Data for ${cityName}`,
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "AQI",
+          "value": `${pollution.aqius}`
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Air Quality Status",
+          "value": `${airQuality(pollution.aqius)}`
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "PM2.5",
+          "value": `${aqiToPM25(pollution.aqius)?.toFixed(1)}`
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Humidity",
+          "value": `${aqiData.data.current.weather.hu}`
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Temperature",
+          "value": `${aqiData.data.current.weather.tp}°C`
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Wind Speed",
+          "value": `${aqiData.data.current.weather.ws} km/h`
+        }
+      ]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://airqualitynearme.org"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": `${cityName}`,
+        "item": `https://airqualitynearme.org/current-air-quality/${cityName}`
+      }
+    ]
+  }
+];
+//Schema and Breadcrumbs data end
 
   return (
     <main className="p-6 text-center">
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(schemaData),
+        }}
+      />
       <CitySearch />
       <h2 className="font-bold text-3xl m-10 font-serif">
         {location.city || cityName} current air Quality
