@@ -1,0 +1,130 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import { Input } from './ui/input';
+
+type AddressSuggestion = {
+  formattedAddress: string;
+  latitude: number;
+  longitude: number;
+  city?: string;
+  state?: string;
+  country?: string;
+};
+
+type CleanAddress = {
+  city: string;
+  state: string;
+  country: string;
+};
+
+export default function LocationSearch() {
+  const [query, setQuery] = useState('');
+  const [suggestions, setSuggestions] = useState<CleanAddress[]>([]);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  // Close on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+        setSuggestions([]);
+        setQuery('');
+        setLoading(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Fetch suggestions
+  useEffect(() => {
+    if (query.length < 2) {
+      setSuggestions([]);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    const timeoutId = setTimeout(async () => {
+      try {
+        const apikey = `prj_live_pk_69d79e13a0ec7daf697b471765afab8cfd946ac2`;
+        const res = await fetch(
+          `https://api.radar.io/v1/search/autocomplete?query=${encodeURIComponent(query)}`,
+          {
+            headers: {
+              Authorization: apikey || '',
+            },
+          }
+        );
+        const data = await res.json();
+
+        const filtered: CleanAddress[] = (data.addresses || [])
+          .map((addr: AddressSuggestion) => ({
+            city: addr.city || '',
+            state: addr.state || '',
+            country: addr.country || '',
+          }))
+          .filter((addr: CleanAddress) => addr.city || addr.state || addr.country)
+          .filter((addr: CleanAddress) => /^[\x00-\x7F]*$/.test(addr.city)) // ASCII only
+          .filter((addr: CleanAddress, index: number, self: CleanAddress[]) =>
+            index ===
+            self.findIndex(
+              (a) =>
+                a.city.toLowerCase() === addr.city.toLowerCase() &&
+                a.state.toLowerCase() === addr.state.toLowerCase() &&
+                a.country.toLowerCase() === addr.country.toLowerCase()
+            )
+          );
+
+        setSuggestions(filtered);
+      } catch (error) {
+        console.error('Error fetching suggestions:', error);
+      } finally {
+        setLoading(false);
+      }
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [query]);
+
+  const handleSelect = (address: CleanAddress) => {
+    const cityName = address.city || address.state || address.country;
+    if (cityName) {
+      const slug = encodeURIComponent(cityName.toLowerCase().replace(/\s+/g, '-'));
+      router.push(`/current-air-quality/${slug}`);
+    }
+    setSuggestions([]);
+    setQuery('');
+    setLoading(false);
+  };
+
+  return (
+    <div ref={wrapperRef} className="relative w-full max-w-md mx-auto">
+      <Input value={query} placeholder='Search Location..'
+        onChange={(e) => setQuery(e.target.value)}/>
+
+      {(loading || suggestions.length > 0) && (
+        <ul className="absolute left-0 right-0 mt-1 bg-white border border-gray-300 rounded shadow z-50">
+          {loading ? (
+            <li className="p-2 text-gray-500 italic">Loading...</li>
+          ) : (
+            suggestions.map((s, i) => (
+              <li
+                key={i}
+                className="p-2 hover:bg-gray-100 cursor-pointer"
+                onClick={() => handleSelect(s)}
+              >
+                <span className="font-medium">{s.city}</span>
+                {s.state && <span className="text-muted-foreground">, {s.state}</span>}
+                {s.country && <span className="text-muted-foreground">, {s.country}</span>}
+              </li>
+            ))
+          )}
+        </ul>
+      )}
+    </div>
+  );
+}

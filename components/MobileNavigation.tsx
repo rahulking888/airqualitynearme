@@ -5,21 +5,21 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import ThemeToggle from "./ThemeToggle"
+//import ThemeToggle from "./ThemeToggle"
 import { Button } from "./ui/button"
-import { Menu } from "lucide-react"
 import { navItems } from "@/lib/constants"
 import Link from "next/link"
 import { useState } from "react"
+import { RiMenu3Fill } from "react-icons/ri"
 
 export default function MobileNavigation () {
   const [isOpen, setIsOpen] = useState(false);
-  return <div className="md:hidden flex items-center space-x-4">
-    <ThemeToggle/>
+  return <div className="md:hidden flex items-center space-x-4 ">
+    {/* remove comment if needed theme toggle      <ThemeToggle/>    */} 
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
   <SheetTrigger asChild>
     <Button variant="ghost" size="icon">
-      <Menu className="h-5 w-5"/>
+      <RiMenu3Fill  />
     </Button>
   </SheetTrigger>
   <SheetContent>

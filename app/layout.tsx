@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import {Inter, Playfair_Display} from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
+//import Navigation from "@/components/Navigation";
+import NewNavigation from "@/components/NewNavigation";
+
 
 
 const inter = Inter({subsets: ["latin"], variable: "--font-inter"});
@@ -28,16 +29,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} antialiased`}
       >
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Navigation/>
+        
+          <NewNavigation/>
            {children}
            <Footer/>
-          </ThemeProvider>
           <GoogleAnalytics gaId="G-BF1PGSRTWP" />    
       </body>
       
