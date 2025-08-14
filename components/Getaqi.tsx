@@ -1,12 +1,13 @@
 "use server"
 import { GeoIP } from "./GeoIP";
 
+
 //Location by ip start
 const ipcords = await GeoIP();
 const ip_lat = ipcords.address.latitude;
 const ip_lon = ipcords.address.longitude
 const lat = ip_lat;
-const lon = ip_lon
+const lon = ip_lon;
 //Location by ip end
 
 

@@ -1,5 +1,3 @@
-"use client"
-
 import Showdata from "@/components/Showdata";
 
 

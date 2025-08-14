@@ -1,7 +1,3 @@
-
-
-
-
 export async function GeoIP () {
   const key = process.env.RADAR_SECRET_KEY!;
   const url = `https://api.radar.io/v1/geocode/ip`;
