@@ -13,9 +13,9 @@ export default function NewNavigation() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href={"/"}>
-              <h1 className="text-xl font-serif font-bold text-foreground">
+              <p className="text-xl font-serif font-bold text-foreground">
                 AirQualityNearMe
-              </h1>
+              </p>
             </Link>
           </div>
 
