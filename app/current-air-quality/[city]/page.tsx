@@ -36,7 +36,11 @@ export default async function CityPage({
   params: Promise<{ city: string }>;
 }) {
   const { city } = await params;
-  const cityName = city.replace(/-/g, " ");
+  const cityName = city
+    .replace(/-/g, " ")
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 
   // Radar API call
   const radarRes = await fetch(
@@ -174,7 +178,7 @@ export default async function CityPage({
           </span>
 
           <h1 className="text-2xl font-bold font-serif mt-3">
-            Current Air Quality {city}
+            Current Air Quality {cityName}
           </h1>
           <div className="flex flex-wrap items-center justify-between flex-1 gap-4">
             {/* Radiation ball and AQI */}
