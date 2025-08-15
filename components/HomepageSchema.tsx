@@ -8,7 +8,7 @@ export default function HomepageSchema () {
     "@type": "WebPage",
     name: "Air Quality Near Me",
     description:
-      "Get real-time air quality index (AQI) data, PM2.5, humidity, temperature, and pollution levels for cities across the world. Updated hourly.",
+      "Get real-time air quality index (AQI) data, PM2.5, humidity, temperature, and pollution levels for cities across the world. Updated instantly.",
     url: "https://airqualitynearme.org",
     datePublished: "2025-08-08T00:00:00.000Z",
     dateModified: new Date().toISOString(),

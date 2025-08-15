@@ -11,7 +11,7 @@ import Pm25Converter from "./Pm25Converter";
 import { MdWaterDrop } from "react-icons/md";
 import { FaTemperatureLow } from "react-icons/fa";
 import { MdOutlineWindPower } from "react-icons/md";
-import HomepageSchema from "./HomepageSchema";
+
 
 export default function Showaqi() {
   const [data, setdata] = useState(null);
@@ -24,7 +24,7 @@ export default function Showaqi() {
     });
   }, []);
   if (loading)
-    return <h2 className="text-center font-bold text-5xl mt-7">Loading</h2>;
+    return <p className="text-center font-bold text-5xl mt-7">Loading</p>;
   const city = data.data.city;
   const state = data.data.state;
   const country = data.data.country;
@@ -42,19 +42,12 @@ export default function Showaqi() {
   //PM 2.5 conversion start
     const pm25 = Pm25Converter(aqi);
 
-    //Schema data start
-      const schemaData = HomepageSchema();
+    
   
 
   return (
     <div className="relative min-h-screen">
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schemaData),
-        }}
-      />
+      
       {/* Map section */}
       <div className="relative h-[67vh]">
         <MapComponent lati={latitude} longi={longitude} zoom={11} />
@@ -74,10 +67,8 @@ export default function Showaqi() {
                   LIVE
                 </span>
       
-                <h1 className="text-2xl font-bold font-serif mt-3">
-                  Current Air Quality {city}
-                </h1>
-                <div className="flex flex-wrap items-center justify-between flex-1 gap-4">
+                <h1 className="text-3xl font-bold mt-3 font-serif"> Current Air Quality {city} </h1>
+                <div className="flex flex-wrap items-center justify-between flex-1 gap-4 mt-3">
                   {/* Radiation ball and AQI */}
                   <div className="flex flex-col">
                     <div className="flex text-center items-center gap-2">
