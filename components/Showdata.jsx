@@ -11,6 +11,7 @@ import Pm25Converter from "./Pm25Converter";
 import { MdWaterDrop } from "react-icons/md";
 import { FaTemperatureLow } from "react-icons/fa";
 import { MdOutlineWindPower } from "react-icons/md";
+import HomepageSchema from "./HomepageSchema";
 
 export default function Showaqi() {
   const [data, setdata] = useState(null);
@@ -40,10 +41,20 @@ export default function Showaqi() {
 
   //PM 2.5 conversion start
     const pm25 = Pm25Converter(aqi);
+
+    //Schema data start
+      const schemaData = HomepageSchema();
   
 
   return (
     <div className="relative min-h-screen">
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(schemaData),
+        }}
+      />
       {/* Map section */}
       <div className="relative h-[67vh]">
         <MapComponent lati={latitude} longi={longitude} zoom={11} />

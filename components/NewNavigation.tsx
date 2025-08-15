@@ -14,7 +14,7 @@ export default function NewNavigation() {
           <div className="flex-shrink-0">
             <Link href={"/"}>
               <p className="text-xl font-serif font-bold text-foreground">
-                AirQualityNearMe
+                <span className="text-primary">AirQuality</span><span className="text-destructive">NearMe</span>
               </p>
             </Link>
           </div>
@@ -32,7 +32,7 @@ export default function NewNavigation() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+                className="text-sm font-medium text-primary hover:text-destructive transition-colors duration-200"
               >
                 {item.name}
               </Link>
