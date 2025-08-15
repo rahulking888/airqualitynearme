@@ -133,3 +133,19 @@
   background: var(--primary);
   border-radius: 4px;
 }
+
+/*Live badge*/
+@layer utilities {
+@keyframes liveGlow {
+  0%, 100% {
+    box-shadow: 0 0 0px rgba(239, 68, 68, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+  }
+}
+
+.live-badge {
+  animation: liveGlow 1s infinite;
+}
+}

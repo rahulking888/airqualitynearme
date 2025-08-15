@@ -7,6 +7,7 @@ import { MdWaterDrop } from "react-icons/md";
 import { FaTemperatureLow } from "react-icons/fa";
 import { MdOutlineWindPower } from "react-icons/md";
 import Pm25Converter from "@/components/Pm25Converter";
+import { LiveUpdatedText } from "@/components/LastUpdatedText";
 
 export async function generateMetadata({
   params,
@@ -154,6 +155,8 @@ export default async function CityPage({
     },
   ];
   //Schema and Breadcrumbs data end
+  //last updated for shadcn badge
+  const lastUpdated = new Date().toISOString();
 
   return (
     <main className="p-3">
@@ -173,21 +176,20 @@ export default async function CityPage({
       >
         {/* Left Section - AQI */}
         <div className="md:col-span-4">
-          <span className="bg-red-500 text-white px-3 py-1 text-xs rounded uppercase tracking-wide">
-            LIVE
-          </span>
+           
 
           <h1 className="text-2xl font-bold font-serif mt-3">
-            Current Air Quality {cityName}
+            Current Air Quality Index (AQI) {cityName}
           </h1>
-          <div className="flex flex-wrap items-center justify-between flex-1 gap-4">
+          <p className="mt-3 text-muted-foreground ">Live AQI data for {cityName}, {location.state}, {location.country}, shows PM2.5 concentration, temperature, humidity and current air quality based on global standards. </p>
+          <div className="flex flex-wrap items-center justify-between flex-1 gap-4 mt-4">
             {/* Radiation ball and AQI */}
             <div className="flex flex-col">
               <div className="flex text-center items-center gap-2">
                 <span>
                   <RadiationBall />
                 </span>
-                <p className="font-bold">Live AQI</p>
+                <p className="font-bold ml-1">Live AQI</p>
               </div>
               <div>
                 <span style={{ color: fore }} className="text-5xl font-bold">
@@ -202,7 +204,7 @@ export default async function CityPage({
             {/* Air Quality Status closer to AQI */}
             <div className="text-center">
               <p>Air Quality is</p>
-              <Button className="text-xl"
+              <Button className="text-xl mt-1"
                 style={{ backgroundColor: fore }}
               >
                 {condition}
@@ -211,7 +213,7 @@ export default async function CityPage({
           </div>
 
           {/* PM2.5 */}
-          <div className="mt-4 text-sm md:text-base">
+          <div className="mt-4 text-sm md:text-base flex justify-between">
             <p className="font-bold">
               PM2.5:
               <span className="font-semibold text-muted-foreground">
@@ -219,10 +221,11 @@ export default async function CityPage({
                 {pm25?.toFixed(1)} µg/m³
               </span>
             </p>
+            <LiveUpdatedText initialTime={lastUpdated}/>
           </div>
 
           {/* AQI Scale Bar */}
-          <div className="mt-4">
+          <div className="mt-7">
             <AirQualityBar value={pollution.aqius} />
           </div>
         </div>
@@ -243,7 +246,7 @@ export default async function CityPage({
               src={`/aqi-icons/${ic}.webp`}
               width={140}
               height={140}
-              alt={`Current air Quality ${city}`}
+              alt={`Current Air Quality Index (AQI) ${city}`}
                />
             </div>
             <div
