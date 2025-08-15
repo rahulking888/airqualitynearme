@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: 'https://airqualitynearme.org',
-  generateRobotsTxt: true,
+  generateRobotsTxt: false,
   sitemapSize: 5000,
   additionalPaths: async (config) => {
     const cities = [
