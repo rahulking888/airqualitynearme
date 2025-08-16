@@ -1,13 +1,7 @@
-import RadiationBall from "@/components/RadiationBall";
-import AirQualityBar from "@/components/AirQualityBar";
-import { Button } from "@/components/ui/button";
 import AqiStatus from "@/components/AqiStatus";
-import Image from "next/image";
-import { MdWaterDrop } from "react-icons/md";
-import { FaTemperatureLow } from "react-icons/fa";
-import { MdOutlineWindPower } from "react-icons/md";
 import Pm25Converter from "@/components/Pm25Converter";
-import { LiveUpdatedText } from "@/components/LastUpdatedText";
+import AirQualityDashboard from "@/components/AirQualityDashboard";
+import Faqs from "@/components/Faqs";
 
 export async function generateMetadata({
   params,
@@ -76,16 +70,17 @@ export default async function CityPage({
     return <h2>Air quality data not available.</h2>;
   }
 
-  const { condition, fore, ic } = AqiStatus(pollution.aqius);
-   const pm25 = Pm25Converter(pollution.aqius);
-  
+  const { condition } = AqiStatus(pollution.aqius);
+  const pm25 = Pm25Converter(pollution.aqius);
+
   //Schema and Breadcrumbs data start
   const schemaData = [
+    // WebPage Schema
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      name: `Current Air Quality in ${cityName}`,
-      description: `Check AQI, PM2.5, humidity, temperature in ${cityName}. Updated every hour.`,
+      name: `Current Air Quality Index (AQI) ${cityName}`,
+      description: `Check live AQI, PM2.5, humidity, temperature, and wind speed in ${cityName}. Updated in real-time with the latest air quality data.`,
       url: `https://airqualitynearme.org/current-air-quality/${cityName}`,
       datePublished: "2025-08-08T00:00:00.000Z",
       dateModified: new Date().toISOString(),
@@ -120,12 +115,12 @@ export default async function CityPage({
           {
             "@type": "PropertyValue",
             name: "Humidity",
-            value: `${aqiData.data.current.weather.hu}`,
+            value: `${aqiData.data.current.weather.hu}%`,
           },
           {
             "@type": "PropertyValue",
             name: "Temperature",
-            value: `${aqiData.data.current.weather.tp}°C`,
+            value: `${aqiData.data.current.weather.tp} °C`,
           },
           {
             "@type": "PropertyValue",
@@ -135,6 +130,8 @@ export default async function CityPage({
         ],
       },
     },
+
+    // Breadcrumb Schema
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -153,13 +150,102 @@ export default async function CityPage({
         },
       ],
     },
+
+    // Dataset Schema
+    {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      name: `Current Air Quality Index (AQI) for ${cityName}`,
+      description: `Live AQI and PM2.5 data for ${cityName}. Check real-time air quality updates`,
+      url: `https://airqualitynearme.org/current-air-quality/${cityName}`,
+      creator: {
+        "@type": "Organization",
+        name: "Air Quality Near Me",
+        url: "https://airqualitynearme.org",
+      },
+      spatialCoverage: {
+        "@type": "Place",
+        name: `${cityName}`,
+      },
+      variableMeasured: [
+        {
+          "@type": "PropertyValue",
+          name: "AQI",
+          value: `${pollution.aqius}`,
+          unitText: "AQI",
+        },
+        {
+          "@type": "PropertyValue",
+          name: "PM2.5",
+          value: `${pm25?.toFixed(1)}`,
+          unitText: "µg/m³",
+        },
+        {
+          "@type": "PropertyValue",
+          name: "Temperature",
+          value: `${aqiData.data.current.weather.tp}`,
+          unitText: "°C",
+        },
+        {
+          "@type": "PropertyValue",
+          name: "Humidity",
+          value: `${aqiData.data.current.weather.hu}`,
+          unitText: "%",
+        },
+        {
+          "@type": "PropertyValue",
+          name: "Wind Speed",
+          value: `${aqiData.data.current.weather.ws}`,
+          unitText: "km/h",
+        },
+      ],
+      measurementTechnique: "Standard air quality measurement methods",
+      dateModified: new Date().toISOString(),
+    },
+
+    // FAQ Schema
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: `What is the current AQI level in ${cityName}?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `The AQI in ${cityName} today is ${pollution.aqius}, which is considered ${condition}.`,
+          },
+        },
+        {
+          "@type": "Question",
+          name: `What is the main cause of air pollution in ${cityName}?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `The most common sources of air pollution in ${cityName} include traffic emissions, industrial activities, burning of fossil fuels, and natural factors such as dust and weather conditions.`,
+          },
+        },
+        {
+          "@type": "Question",
+          name: `What is a safe AQI level?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `An AQI below 50 is considered safe and healthy.`,
+          },
+        },
+        {
+          "@type": "Question",
+          name: `When is ${cityName} air quality worst?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `Air quality in ${cityName} often becomes worse during colder months, when pollution is trapped near the ground, or during periods of high emissions and unfavorable weather.`,
+          },
+        },
+      ],
+    },
   ];
-  //Schema and Breadcrumbs data end
-  //last updated for shadcn badge
-  const lastUpdated = new Date().toISOString();
 
   return (
-    <main className="p-3">
+    <main className="p-0">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -167,120 +253,20 @@ export default async function CityPage({
           __html: JSON.stringify(schemaData),
         }}
       />
-
-      <div
-        style={{
-          backgroundImage: `linear-gradient(to bottom left, ${fore}66 0%, white 50%)`,
-        }}
-        className="grid grid-cols-1 relative w-full mx-auto p-6 rounded-xl shadow-lg md:grid-cols-7 gap-4"
-      >
-        {/* Left Section - AQI */}
-        <div className="md:col-span-4">
-           
-
-          <h1 className="text-2xl font-bold font-serif mt-3">
-            Current Air Quality Index (AQI) {cityName}
-          </h1>
-          <p className="mt-3 text-muted-foreground ">Live AQI data for {cityName}, {location.state}, {location.country}, shows PM2.5 concentration, temperature, humidity and current air quality based on global standards. </p>
-          <div className="flex flex-wrap items-center justify-between flex-1 gap-4 mt-4">
-            {/* Radiation ball and AQI */}
-            <div className="flex flex-col">
-              <div className="flex text-center items-center gap-2">
-                <span>
-                  <RadiationBall />
-                </span>
-                <p className="font-bold ml-1">Live AQI</p>
-              </div>
-              <div>
-                <span style={{ color: fore }} className="text-5xl font-bold">
-                  {pollution.aqius}
-                </span>
-                <span className="text-muted-foreground text-[12px]">
-                  (US-AQI)
-                </span>
-              </div>
-            </div>
-
-            {/* Air Quality Status closer to AQI */}
-            <div className="text-center">
-              <p>Air Quality is</p>
-              <Button className="text-xl mt-1"
-                style={{ backgroundColor: fore }}
-              >
-                {condition}
-              </Button>
-            </div>
-          </div>
-
-          {/* PM2.5 */}
-          <div className="mt-4 text-sm md:text-base flex justify-between">
-            <p className="font-bold">
-              PM2.5:
-              <span className="font-semibold text-muted-foreground">
-                {" "}
-                {pm25?.toFixed(1)} µg/m³
-              </span>
-            </p>
-            <LiveUpdatedText initialTime={lastUpdated}/>
-          </div>
-
-          {/* AQI Scale Bar */}
-          <div className="mt-7">
-            <AirQualityBar value={pollution.aqius} />
-          </div>
-        </div>
-
-        {/* Right Section - Weather (Glassmorphism) */}
-        <div
-          className="md:col-span-3 p-0 sm:p-4 md:p-6"
-          //  style={{
-          //    background: "rgba(255, 255, 255, 0.15)",
-          //    backdropFilter: "blur(10px)",
-          //    WebkitBackdropFilter: "blur(10px)",
-          //    border: "1px solid rgba(255, 255, 255, 0.3)",
-          //  }}
-             >
-          <div className="flex flex-col items-center">
-            <div>
-              <Image
-              src={`/aqi-icons/${ic}.webp`}
-              width={140}
-              height={140}
-              alt={`Current Air Quality Index (AQI) ${city}`}
-               />
-            </div>
-            <div
-              className="flex flex-row justify-between w-full mt-4 border-t border-gray-300 pt-4"
-              style={{
-                background: "#fcfcfc",
-                backdropFilter: "blur(10px)",
-                WebkitBackdropFilter: "blur(10px)",
-                //border: "1px solid rgba(255, 255, //255, 0.3)",
-              }}
-              >
-              <div className="flex-[1] md:flex-1 flex items-center justify-center">
-                <div className="flex items-center gap-1">
-                  <FaTemperatureLow className="text-primary"/>
-                  <span className="font-semibold">{aqiData.data.current.weather.tp}°C</span>
-                </div>
-              </div>
-
-              <div className="flex-[0.9] md:flex-1 border-l border-gray-300 flex items-center justify-center">
-                <div className="flex items-center gap-1">
-                  <MdWaterDrop className="text-primary"/>
-                  <span className="font-semibold">{aqiData.data.current.weather.hu}% </span>
-                </div>
-              </div>
-
-              <div className="flex-[1.4] md:flex-1 border-l border-gray-300 flex items-center justify-center">
-               <div className="flex items-center gap-1">
-                  <MdOutlineWindPower className="text-primary"/>
-                  <span className="font-semibold">{aqiData.data.current.weather.ws} Km/h </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <AirQualityDashboard
+        place={cityName}
+        state={location.state}
+        country={location.country}
+        aqi={pollution.aqius}
+        temp={aqiData.data.current.weather.tp}
+        humidity={aqiData.data.current.weather.hu}
+        ws={aqiData.data.current.weather.ws}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 className="text-2xl font-bold mb-3">
+          Frequently Asked Questions about Air Quality {cityName}
+        </h2>
+        <Faqs place={cityName} aqi={pollution.aqius} status={condition} />
       </div>
     </main>
   );
