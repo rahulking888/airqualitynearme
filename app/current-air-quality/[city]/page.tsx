@@ -163,6 +163,7 @@ export default async function CityPage({
         name: "Air Quality Near Me",
         url: "https://airqualitynearme.org",
       },
+      license: "https://creativecommons.org/licenses/by/4.0/",
       spatialCoverage: {
         "@type": "Place",
         name: `${cityName}`,
