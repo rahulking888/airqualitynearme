@@ -1,7 +1,15 @@
-import AqiStatus from "@/components/AqiStatus";
-import Pm25Converter from "@/components/Pm25Converter";
 import AirQualityDashboard from "@/components/AirQualityDashboard";
 import Faqs from "@/components/Faqs";
+import FetchCityData from "@/components/FetchCityData";
+
+
+
+// Shared Promise Start
+async function getData (place:string) {
+  return FetchCityData(place);  
+}
+// Shared Promise End
+
 
 export async function generateMetadata({
   params,
@@ -15,15 +23,18 @@ export async function generateMetadata({
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+    const {aqi, pm25, condition, temp, humidity,ws} = await getData(cityName);
 
   return {
-    title: `Current Air Quality ${cityName}`,
-    description: `Check the current air quality in ${cityName}: AQI, PM 2.5 and humidity levels. Stay updated and protect your health.`,
+    title: `Current Air Quality Index (AQI) ${cityName}`,
+    description: `The current air quality in ${cityName} is AQI ${aqi} (${condition}). PM2.5: ${pm25} µg/m³, Temperature: ${temp}°C, Humidity: ${humidity}%, Wind: ${ws} Km/h - live updates`,
     alternates: {
       canonical: `${siteURL}/current-air-quality/${city}`
     }
   };
 }
+
+
 
 export default async function CityPage({
   params,
@@ -37,41 +48,9 @@ export default async function CityPage({
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 
-  // Radar API call
-  const radarRes = await fetch(
-    `https://api.radar.io/v1/geocode/forward?query=${cityName}`,
-    {
-      headers: {
-        Authorization: process.env.RADAR_SECRET_KEY || "",
-      },
-      cache: "no-store",
-    }
-  );
+  
 
-  const radarData = await radarRes.json();
-  const location = radarData.addresses?.[0];
-
-  if (!location) {
-    return <h2>Location not found.</h2>;
-  }
-
-  // AirVisual API call
-  const aqiRes = await fetch(
-    `https://api.airvisual.com/v2/nearest_city?lat=${location.latitude}&lon=${location.longitude}&key=${process.env.apikey}`,
-    {
-      cache: "no-store",
-    }
-  );
-
-  const aqiData = await aqiRes.json();
-  const pollution = aqiData?.data?.current?.pollution;
-
-  if (!pollution) {
-    return <h2>Air quality data not available.</h2>;
-  }
-
-  const { condition } = AqiStatus(pollution.aqius);
-  const pm25 = Pm25Converter(pollution.aqius);
+  const {aqi, pm25, condition, temp, state, country, humidity, ws} = await getData(cityName);
 
   //Schema and Breadcrumbs data start
   const schemaData = [
@@ -100,7 +79,7 @@ export default async function CityPage({
           {
             "@type": "PropertyValue",
             name: "AQI",
-            value: `${pollution.aqius}`,
+            value: `${aqi}`,
           },
           {
             "@type": "PropertyValue",
@@ -110,22 +89,22 @@ export default async function CityPage({
           {
             "@type": "PropertyValue",
             name: "PM2.5",
-            value: `${pm25?.toFixed(1)}`,
+            value: `${pm25}`,
           },
           {
             "@type": "PropertyValue",
             name: "Humidity",
-            value: `${aqiData.data.current.weather.hu}%`,
+            value: `${humidity}%`,
           },
           {
             "@type": "PropertyValue",
             name: "Temperature",
-            value: `${aqiData.data.current.weather.tp} °C`,
+            value: `${temp} °C`,
           },
           {
             "@type": "PropertyValue",
             name: "Wind Speed",
-            value: `${aqiData.data.current.weather.ws} km/h`,
+            value: `${ws} km/h`,
           },
         ],
       },
@@ -172,31 +151,31 @@ export default async function CityPage({
         {
           "@type": "PropertyValue",
           name: "AQI",
-          value: `${pollution.aqius}`,
+          value: `${aqi}`,
           unitText: "AQI",
         },
         {
           "@type": "PropertyValue",
           name: "PM2.5",
-          value: `${pm25?.toFixed(1)}`,
+          value: `${pm25}`,
           unitText: "µg/m³",
         },
         {
           "@type": "PropertyValue",
           name: "Temperature",
-          value: `${aqiData.data.current.weather.tp}`,
+          value: `${temp}`,
           unitText: "°C",
         },
         {
           "@type": "PropertyValue",
           name: "Humidity",
-          value: `${aqiData.data.current.weather.hu}`,
+          value: `${humidity}`,
           unitText: "%",
         },
         {
           "@type": "PropertyValue",
           name: "Wind Speed",
-          value: `${aqiData.data.current.weather.ws}`,
+          value: `${ws}`,
           unitText: "km/h",
         },
       ],
@@ -214,7 +193,7 @@ export default async function CityPage({
           name: `What is the current AQI level in ${cityName}?`,
           acceptedAnswer: {
             "@type": "Answer",
-            text: `The AQI in ${cityName} today is ${pollution.aqius}, which is considered ${condition}.`,
+            text: `The AQI in ${cityName} today is ${aqi}, which is considered ${condition}.`,
           },
         },
         {
@@ -245,7 +224,16 @@ export default async function CityPage({
     },
   ];
 
-  return (
+   
+
+
+
+
+
+
+
+  return ( 
+    
     <main className="p-0">
       <script
         type="application/ld+json"
@@ -254,21 +242,23 @@ export default async function CityPage({
           __html: JSON.stringify(schemaData),
         }}
       />
+      
       <AirQualityDashboard
         place={cityName}
-        state={location.state}
-        country={location.country}
-        aqi={pollution.aqius}
-        temp={aqiData.data.current.weather.tp}
-        humidity={aqiData.data.current.weather.hu}
-        ws={aqiData.data.current.weather.ws}
+        state={state}
+        country={country}
+        aqi={aqi}
+        temp={temp}
+        humidity={humidity}
+        ws={ws}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h2 className="text-2xl font-bold mb-3">
           Frequently Asked Questions about Air Quality {cityName}
         </h2>
-        <Faqs place={cityName} aqi={pollution.aqius} status={condition} />
+        <Faqs place={cityName} aqi={aqi} status={condition} />
       </div>
     </main>
+    
   );
 }
