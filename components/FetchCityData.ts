@@ -30,13 +30,14 @@ export default async function FetchCityData (city:string) {
     throw new Error ("Air Quality  data is not available..")
   }
   
-  const pm2_5 = Pm25Converter(pollution.aqius);
+  const pmTwo5 = Pm25Converter(pollution.aqius)?.toFixed(1);
   const {condition} = AqiStatus(pollution.aqius)
+  
   
 
   return {
     aqi: pollution.aqius,
-    pm25: pm2_5?.toFixed(1),
+    pm25: pmTwo5,
     condition: condition,
     temp: aqiData.data.current.weather.tp,
     humidity: aqiData.data.current.weather.hu,
