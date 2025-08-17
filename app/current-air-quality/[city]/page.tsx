@@ -20,8 +20,8 @@ export async function generateMetadata({
     title: `Current Air Quality ${cityName}`,
     description: `Check the current air quality in ${cityName}: AQI, PM 2.5 and humidity levels. Stay updated and protect your health.`,
     alternates: {
-      canonical: `${siteURL}/current-air-quality/${city}`,
-    },
+      canonical: `${siteURL}/current-air-quality/${city}`
+    }
   };
 }
 
