@@ -46,10 +46,10 @@ export default function RootLayout({
     "https://x.com/air_quality_now",
   ],
   "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://airqualitynearme.org/?s={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+"@type": "SearchAction",
+"target": "https://airqualitynearme.org/search?query={query}",
+"query-input": "required name=query"
+}
 }
   return (
     <html lang="en" suppressHydrationWarning >
