@@ -20,7 +20,7 @@ export const countries = {
       'richmond', 'birmingham', 'miami',
       'des-moines', 'grand-rapids', 'modesto',
       'santa-ana', 'oregon-city', 'salem', 'ann-arbor', 'providence',
-      'hartford', 'cambridge', 'new-haven', 'athens', 'wichita-falls',
+      'hartford', 'cambridge', 'new-haven', 'wichita-falls',
       'jackson', 'mobile', 'augusta', 'columbia-sc', 'des-oto', 'el-monte',
       'tallahassee', 'pueblo', 'wichita', 'fayetteville', 'topeka',
       'boise', 'chattanooga', 'borders', 'eugene', 'flint', 'hampton',

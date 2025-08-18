@@ -30,7 +30,7 @@ export default function RootLayout({
   "name": "Air Quality Near Me",
   "alternateName": "Current AQI Near Me",
   "url": "https://airqualitynearme.org/",
-  "description": "Air Qualit yNear Me shows real-time air quality for your location or any city or place. Check current air quality index (AQI), PM2.5, humidity, and temperature instantly.",
+  "description": "Air Qualit Near Me shows real-time air quality for your location or any city or place. Check current air quality index (AQI), PM2.5, humidity, and temperature instantly.",
   "inLanguage": "en",
   "publisher": {
     "@type": "Organization",
