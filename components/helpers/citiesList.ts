@@ -1,4 +1,4 @@
-export const countries = {
+export const countries:Record<string, string[]> = {
   "united-states": [
       'new-york', 'los-angeles', 'chicago', 'houston', 'phoenix',
       'philadelphia', 'san-antonio', 'san-diego', 'dallas', 'san-jose',

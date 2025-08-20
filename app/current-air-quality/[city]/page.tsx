@@ -1,6 +1,7 @@
 import AirQualityDashboard from "@/components/AirQualityDashboard";
 import Faqs from "@/components/Faqs";
 import FetchCityData from "@/components/FetchCityData";
+import { RelatedCities } from "@/components/RelatedCities";
 import { CitySchema } from "@/components/helpers/CitySchema";
 
 // Shared Promise Start
@@ -58,6 +59,7 @@ export default async function CityPage({
     Condition: condition,
   });
 
+
   return (
     <main className="p-0">
       <script
@@ -77,10 +79,11 @@ export default async function CityPage({
         humidity={humidity}
         ws={ws}
       />
+      <RelatedCities country={country} currentPlace={cityName}/>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h2 className="text-2xl font-bold mb-3">
+        <h3 className="text-2xl font-bold mb-3">
           Frequently Asked Questions about Air Quality {cityName}
-        </h2>
+        </h3>
         <Faqs place={cityName} aqi={aqi} status={condition} />
       </div>
     </main>

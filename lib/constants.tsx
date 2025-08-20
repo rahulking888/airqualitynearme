@@ -7,9 +7,5 @@ export const navItems = [
   },
   { name: "Contact Us",
     href: "/contact-us",
-  },
-  {
-    name: "All Cities",
-    href: "/cities/united-states"
   }
 ]
