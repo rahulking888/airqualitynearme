@@ -1,6 +1,7 @@
 import AirQualityDashboard from "@/components/AirQualityDashboard";
 import Faqs from "@/components/Faqs";
 import FetchCityData from "@/components/FetchCityData";
+import IndoorAirQuality from "@/components/IndoorAirQuality";
 import { RelatedCities } from "@/components/RelatedCities";
 import { CitySchema } from "@/components/helpers/CitySchema";
 
@@ -79,7 +80,11 @@ export default async function CityPage({
         humidity={humidity}
         ws={ws}
       />
+    
       <RelatedCities country={country} currentPlace={cityName}/>
+
+      <IndoorAirQuality aqi={aqi} place={cityName}/>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h3 className="text-2xl font-bold mb-3">
           Frequently Asked Questions about Air Quality {cityName}
