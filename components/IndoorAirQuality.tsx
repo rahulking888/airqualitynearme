@@ -1,14 +1,13 @@
-import { Content } from "next/font/google";
 
 type qualityProps = {
   aqi: number;
   place: string;
-  
+ 
 };
 
 export default function IndoorAirQuality({
   aqi,
-  place,
+  place
 }: qualityProps) {
   const paraText =
     aqi <= 50
@@ -18,9 +17,9 @@ export default function IndoorAirQuality({
       : `Indoor air quality in homes and offices in ${place} may be poor at times. Prolonged exposure to indoor pollutants can affect health particularly for sensitive groups causing respiratory discomfort allergies fatigue or other issues. Common contributors include stagnant ventilation pet dander cooking fumes mold accumulated dust and built up chemicals from household products. To reduce indoor air pollution, minimize time in poorly ventilated areas use high quality air purifiers clean surfaces regularly and ensure adequate airflow in every room. Taking these steps can help create a safer and healthier indoor environment for everyone.`;
 
   return (
-    <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <h2 className="text-2xl font-bold">Indoor Air Quality {place}</h2>
+    <div >
       <p className="mt-4">{paraText}</p>
+     
     </div>
   );
 }

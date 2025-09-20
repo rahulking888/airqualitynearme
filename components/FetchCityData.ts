@@ -1,5 +1,5 @@
 import AqiStatus from "./AqiStatus";
-import Pm25Converter from "./Pm25Converter";
+
 
 export default async function FetchCityData (city:string) {
   const radarRes = await fetch(
@@ -30,14 +30,14 @@ export default async function FetchCityData (city:string) {
     throw new Error ("Air Quality  data is not available..")
   }
   
-  const pmTwo5 = Pm25Converter(pollution.aqius)?.toFixed(1);
+ 
   const {condition} = AqiStatus(pollution.aqius)
   
   
 
   return {
     aqi: pollution.aqius,
-    pm25: pmTwo5,
+    
     condition: condition,
     temp: aqiData.data.current.weather.tp,
     humidity: aqiData.data.current.weather.hu,

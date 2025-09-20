@@ -1,13 +1,14 @@
 import AirQualityDashboard from "@/components/AirQualityDashboard";
 import Faqs from "@/components/Faqs";
-import FetchCityData from "@/components/FetchCityData";
-import IndoorAirQuality from "@/components/IndoorAirQuality";
+import FetchLocationData from "@/components/FetchLoacationData";
 import { RelatedCities } from "@/components/RelatedCities";
 import { CitySchema } from "@/components/helpers/CitySchema";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 // Shared Promise Start
 async function getData(place: string) {
-  return FetchCityData(place);
+  return FetchLocationData(place);
 }
 // Shared Promise End
 
@@ -23,11 +24,11 @@ export async function generateMetadata({
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
-  const { aqi, pm25, condition, temp, humidity, ws } = await getData(cityName);
+  const { aqi, pm2_5, condition, temp, humidity, ws } = await getData(cityName);
 
   return {
     title: `Current Air Quality Index (AQI) ${cityName}`,
-    description: `The current air quality in ${cityName} is AQI ${aqi} (${condition}). PM2.5: ${pm25} µg/m³, Temperature: ${temp}°C, Humidity: ${humidity}%, Wind: ${ws} Km/h - live updates`,
+    description: `The current air quality in ${cityName} is AQI ${aqi} (${condition}). PM2.5: ${pm2_5} µg/m³, Temperature: ${temp}°C, Humidity: ${humidity}%, Wind: ${ws} Km/h - live updates`,
     alternates: {
       canonical: `${siteURL}/current-air-quality/${city}`,
     },
@@ -46,14 +47,14 @@ export default async function CityPage({
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 
-  const { aqi, pm25, condition, temp, state, country, humidity, ws } =
+  const { aqi, pm2_5, condition, temp, state, country, humidity, ws,mainPollutant } =
     await getData(cityName);
 
   //Schema and Breadcrumbs data start
   const schemaData = CitySchema({
     City: cityName,
     Aqi: aqi,
-    Pm2five: pm25,
+    Pm2five: pm2_5,
     Temp: temp,
     Humidity: humidity,
     Ws: ws,
@@ -79,13 +80,22 @@ export default async function CityPage({
         temp={temp}
         humidity={humidity}
         ws={ws}
+        mainPollutant={mainPollutant}
       />
+       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <Link
+    href={`/indoor-air-quality/${city}`}
+    className="group inline-flex items-center gap-2 text-primary font-medium transition-colors duration-300 hover:text-pink-600"
+  >
+    Indoor air quality {cityName}
+    <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+  </Link>
+</div>
     
       <RelatedCities country={country} currentPlace={cityName}/>
 
-      <IndoorAirQuality aqi={aqi} place={cityName}/>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
         <h3 className="text-2xl font-bold mb-3">
           Frequently Asked Questions about Air Quality {cityName}
         </h3>

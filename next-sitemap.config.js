@@ -15,8 +15,17 @@ module.exports = {
     locations.forEach((countryObj) => {
       countryObj.states.forEach((stateObj) => {
         stateObj.cities.forEach((city) => {
+          // current air quality
           urls.push({
             loc: `/current-air-quality/${city}`,
+            changefreq: "daily",
+            priority: 0.7,
+            lastmod: new Date().toISOString(),
+          });
+
+          // indoor air quality
+          urls.push({
+            loc: `/indoor-air-quality/${city}`,
             changefreq: "daily",
             priority: 0.7,
             lastmod: new Date().toISOString(),

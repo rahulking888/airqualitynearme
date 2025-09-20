@@ -7,22 +7,21 @@ import Image from "next/image";
 import { MdWaterDrop } from "react-icons/md";
 import { FaTemperatureLow } from "react-icons/fa";
 import { MdOutlineWindPower } from "react-icons/md";
-import Pm25Converter from "./Pm25Converter";
 
 type dashboardProps = {
   place: string;
   state: string;
   country: string;
-  aqi: number;
-  temp: number;
+  aqi: number ;
+  temp: number | null;
   humidity: number;
-  ws: number;
+  ws: number | null;
+  mainPollutant: string;
 };
 
-export default function AirQualityDashboard ({place,state,country,aqi,temp,humidity,ws}:dashboardProps) {
+export default function AirQualityDashboard ({place,state,country,aqi,temp,humidity,ws,mainPollutant}:dashboardProps) {
       
-  //PM2.5 Conversion
-   const pm25 = Pm25Converter(aqi); 
+  
   // air quality status
   const { condition, fore, ic } = AqiStatus(aqi);
       //last updated for msg
@@ -77,10 +76,10 @@ export default function AirQualityDashboard ({place,state,country,aqi,temp,humid
           {/* PM2.5 */}
           <div className="mt-4 text-sm md:text-base flex justify-between">
             <p className="font-bold">
-              PM2.5:
+              Dominant Pollutant:
               <span className="font-semibold text-muted-foreground">
                 {" "}
-                {pm25?.toFixed(1)} µg/m³
+                {mainPollutant}
               </span>
             </p>
             <LiveUpdatedText initialTime={lastUpdated}/>

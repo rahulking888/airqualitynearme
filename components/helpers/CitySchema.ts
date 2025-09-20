@@ -1,10 +1,10 @@
 type schemaProps = {
   City: string;
   Aqi: number;
-  Temp: number;
+  Temp: number | null;
   Humidity: number;
-  Ws: number;
-  Pm2five: string | undefined;
+  Ws: number | null;
+  Pm2five: number;
   Condition:string;
 }
 

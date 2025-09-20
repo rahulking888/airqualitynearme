@@ -7,7 +7,6 @@ import { Button } from "./ui/button";
 import AirQualityBar from "./AirQualityBar";
 import Image from "next/image";
 import AqiStatus from "./AqiStatus";
-import Pm25Converter from "./Pm25Converter";
 import { MdWaterDrop } from "react-icons/md";
 import { FaTemperatureLow } from "react-icons/fa";
 import { MdOutlineWindPower } from "react-icons/md";
@@ -39,8 +38,7 @@ export default function Showaqi() {
   //air quality status const start
    const { condition, fore, ic } = AqiStatus(aqi);
 
-  //PM 2.5 conversion start
-    const pm25 = Pm25Converter(aqi);
+  
 
     
   
@@ -104,7 +102,7 @@ export default function Showaqi() {
                     PM2.5:
                     <span className="font-semibold text-muted-foreground">
                       {" "}
-                      {pm25?.toFixed(1)} µg/m³
+                      {/* mainPollutant here */}
                     </span>
                   </p>
                 </div>
