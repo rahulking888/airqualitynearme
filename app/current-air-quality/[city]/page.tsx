@@ -53,6 +53,7 @@ export default async function CityPage({
   //Schema and Breadcrumbs data start
   const schemaData = CitySchema({
     City: cityName,
+    citySlug: city,
     Aqi: aqi,
     Pm2five: pm2_5,
     Temp: temp,

@@ -6,9 +6,10 @@ type schemaProps = {
   Ws: number | null;
   Pm2five: number;
   Condition:string;
+  citySlug:string;
 }
 
-export function CitySchema ({City,Aqi,Pm2five,Temp,Humidity,Ws,Condition}:schemaProps) {
+export function CitySchema ({City,Aqi,Pm2five,Temp,Humidity,Ws,Condition,citySlug}:schemaProps) {
   
   return [
     // WebPage Schema
@@ -17,7 +18,7 @@ export function CitySchema ({City,Aqi,Pm2five,Temp,Humidity,Ws,Condition}:schema
       "@type": "WebPage",
       name: `Current Air Quality Index (Aqi) ${City}`,
       description: `Check live Aqi, PM2.5, humidity, temperature, and wind speed in ${City}. Updated in real-time with the latest air quality data.`,
-      url: `https://airqualitynearme.org/current-air-quality/${City}`,
+      url: `https://airqualitynearme.org/current-air-quality/${citySlug}`,
       keywords: [`current air quality ${City}`, `Live AQI ${City}`, `${City} air quality`, `${City} air quality index`, `air quality ${City}`, `what is the air quality today ${City}` ],
       datePublished: "2025-08-08T00:00:00.000Z",
       dateModified: new Date().toISOString(),
@@ -83,7 +84,7 @@ export function CitySchema ({City,Aqi,Pm2five,Temp,Humidity,Ws,Condition}:schema
           "@type": "ListItem",
           position: 2,
           name: `${City}`,
-          item: `https://airqualitynearme.org/current-air-quality/${City}`,
+          item: `https://airqualitynearme.org/current-air-quality/${citySlug}`,
         },
       ],
     },
@@ -94,7 +95,7 @@ export function CitySchema ({City,Aqi,Pm2five,Temp,Humidity,Ws,Condition}:schema
       "@type": "Dataset",
       name: `Current Air Quality Index (Aqi) for ${City}`,
       description: `Live Aqi and PM2.5 data for ${City}. Check real-time air quality updates`,
-      url: `https://airqualitynearme.org/current-air-quality/${City}`,
+      url: `https://airqualitynearme.org/current-air-quality/${citySlug}`,
       creator: {
         "@type": "Organization",
         name: "Air Quality Near Me",
