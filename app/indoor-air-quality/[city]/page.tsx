@@ -2,7 +2,6 @@ import FetchLocationData from "@/components/FetchLoacationData";
 import IndoorAirQuality from "@/components/IndoorAirQuality";
 import IndoorDashboard from "@/components/IndoorDashboard";
 import stateCodesUSA from "@/lib/data";
-import Image from "next/image";
 
 // ✅ Shared Promise to fetch location data
 async function getData(place: string) {
