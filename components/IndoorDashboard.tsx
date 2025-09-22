@@ -24,7 +24,7 @@ const IndoorDashboard: React.FC<IndoorDashboardProps> = ({
     { name: "PM10", value: pm10, unit: "µg/m³", color: "#FFB200" },
     { name: "CO", value: co, unit: "ppm", color: "#00BFFF" },
     { name: "NO2", value: no2, unit: "ppb", color: "#32CD32" },
-    { name: "O3", value: o3, unit: "ppb", color: "#8A2BE2" },
+    { name: "O3", value: o3, unit: "ppm", color: "#8A2BE2" },
     { name: "SO2", value: so2, unit: "ppb", color: "#FF69B4" },
   ].filter((p) => p.value !== undefined);
 

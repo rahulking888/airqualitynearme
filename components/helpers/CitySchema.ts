@@ -111,7 +111,7 @@ export function CitySchema ({City,Aqi,Pm2five,Temp,Humidity,Ws,Condition,citySlu
           "@type": "PropertyValue",
           name: "Aqi",
           value: `${Aqi}`,
-          unitText: "Aqi",
+          unitText: "Index",
         },
         {
           "@type": "PropertyValue",
