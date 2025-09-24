@@ -127,7 +127,7 @@ export default async function IndoorCityPage({
        
       </div>
       <div className="py-10">
-        <h2 className="text-2xl font-bold">Outdoor Factors</h2>
+        <h2 className="text-2xl font-bold">{cityName} Air Quality Data</h2>
         <IndoorDashboard
           aqi={aqi}
           pm25={pm2_5}

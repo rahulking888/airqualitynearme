@@ -1,5 +1,6 @@
 import AqiStatus from "./AqiStatus";
 import { calculateAQI } from "./helpers/AqiCalculator";
+import { createTwoKeyRoundRobin } from "./helpers/UseTwoKey";
 
 export default async function FetchLocationData(city: string) {
   // 1. Radar API call (for state, country, lat, lon)
@@ -26,9 +27,14 @@ export default async function FetchLocationData(city: string) {
 
   const end = Math.floor(Date.now() / 1000);
   const start = end - 86400;
-  const apikey1 = process.env.weatherkey1;
 
-  const url = `http://api.openweathermap.org/data/2.5/air_pollution/history?lat=${latitude}&lon=${longitude}&start=${start}&end=${end}&appid=${apikey1}`;
+  const getKey4air = createTwoKeyRoundRobin(
+  process.env.weatherkey1!,
+  process.env.weatherkey2!
+);
+  const key4air = getKey4air();
+
+  const url = `http://api.openweathermap.org/data/2.5/air_pollution/history?lat=${latitude}&lon=${longitude}&start=${start}&end=${end}&appid=${key4air}`;
 
   const res = await fetch(url, { next: { revalidate: 3600 } }); // cache 1h
   const opwdata = await res.json();
@@ -61,11 +67,16 @@ export default async function FetchLocationData(city: string) {
   );
 
   // 3. OpenWeather Weather API (for temp, humidity, wind speed)
-  const apikey2 = process.env.weatherkey2;
+
+    const getKey4weather = createTwoKeyRoundRobin(
+  process.env.weatherkey3!,
+  process.env.weatherkey4!
+);
+  const key4weather = getKey4weather();
   const weatherRes = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apikey2}`,
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${key4weather}`,
     {
-      cache: "no-store",
+      next: { revalidate: 3600 }, // 3600 sec = 1 hour cache
     }
   );
 
