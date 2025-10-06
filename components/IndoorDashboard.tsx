@@ -52,6 +52,7 @@ const IndoorDashboard: React.FC<IndoorDashboardProps> = ({
   };
 
   const aqiColor = getAQIColor(aqi);
+  
 
   return (
     <div className="flex flex-col md:flex-row bg-white p-5 rounded-2xl w-full max-w-7xl mx-auto gap-6">

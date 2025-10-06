@@ -1,8 +1,8 @@
 import { IndoorPagesSchema } from "@/components/AllSchema/IndoorPagesSchema";
 import FetchLocationData from "@/components/FetchLoacationData";
-import IndoorAirQuality from "@/components/IndoorAirQuality";
 import IndoorDashboard from "@/components/IndoorDashboard";
 import IndoorFAQ from "@/components/IndoorFAQ";
+import Intro4Indoor from "@/components/Intro4Indoor";
 import stateCodesUSA from "@/lib/data";
 
 // ✅ Shared Promise to fetch location data
@@ -120,12 +120,8 @@ export default async function IndoorCityPage({
         }}
       />
       <h1 className="text-3xl font-bold">{fullTitle}</h1>
-      <IndoorAirQuality aqi={aqi} place={cityName}/>
-
-      {/* ✅ Dynamic image below H1 */}
-      <div className="mt-6">
-       
-      </div>
+      <Intro4Indoor city={city} aqi={aqi} place={cityName} category={condition}/>
+      
       <div className="py-10">
         <h2 className="text-2xl font-bold">{cityName} Air Quality Data</h2>
         <IndoorDashboard
