@@ -18,9 +18,9 @@ export default function Intro4Indoor({ city, aqi, place, category }: IntroProps)
     return (
       <div>
         <p className="mt-4">
-          In {city}, the {data.city_feature} combined with {data.climate_description} influences indoor air conditions. Major contributors to indoor pollution include {data.pollution_cause}. Local factors such as {data.local_factor} further affect how pollutants accumulate indoors.
+  {place} is known for its {data.city_feature}. Indoor air quality in {place} is influenced by the {data.climate_description}. Major contributors to indoor pollution include {data.pollution_cause}, while local factors such as {data.local_factor} further affect how pollutants accumulate indoors.
+</p>
 
-        </p>
         
 
         {/* ✅ Show image only if available */}
