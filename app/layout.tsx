@@ -14,10 +14,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "Air Quality Near Me",
-    template: "%s - Air Quality Near Me"
-  },
+  title: "Air Quality Near Me",
   description:
     "Air Quality Near Me shows real-time air quality index (AQI) for your location or any city or place. Check current AQI, Pm2.5, humidity, and temperature instantly.",
     applicationName: "Air Quality Near Me",
