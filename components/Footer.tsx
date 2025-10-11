@@ -3,7 +3,6 @@ import Link from "next/link";
 const quickLinks = [
   { name: "Privacy Policy", href: "/privacy-policy" },
   { name: "Disclaimer", href: "/disclaimer" },
-  { name: "Terms & Conditions", href: "/terms-conditions" },
   { name: "License", href: "/license" },
 ];
 
