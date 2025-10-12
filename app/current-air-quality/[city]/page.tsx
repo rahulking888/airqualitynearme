@@ -5,6 +5,7 @@ import { RelatedCities } from "@/components/RelatedCities";
 import { CitySchema } from "@/components/helpers/CitySchema";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import SecondParagraph from "@/components/SecondParagraph";
 
 // Shared Promise Start
 async function getData(place: string) {
@@ -47,8 +48,17 @@ export default async function CityPage({
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 
-  const { aqi, pm2_5, condition, temp, state, country, humidity, ws,mainPollutant } =
-    await getData(cityName);
+  const {
+    aqi,
+    pm2_5,
+    condition,
+    temp,
+    state,
+    country,
+    humidity,
+    ws,
+    mainPollutant,
+  } = await getData(cityName);
 
   //Schema and Breadcrumbs data start
   const schemaData = CitySchema({
@@ -61,7 +71,6 @@ export default async function CityPage({
     Ws: ws,
     Condition: condition,
   });
-
 
   return (
     <main className="p-0">
@@ -83,20 +92,27 @@ export default async function CityPage({
         ws={ws}
         mainPollutant={mainPollutant}
       />
-       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <Link
-    href={`/indoor-air-quality/${city}`}
-    className="group inline-flex items-center gap-2 text-primary font-medium transition-colors duration-300 hover:text-pink-600"
-  >
-    Indoor air quality {cityName}
-    <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
-  </Link>
-</div>
-    
-      <RelatedCities country={country} currentPlace={cityName}/>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SecondParagraph
+          city={city}
+          place={cityName}
+          mainPollutant={
+            mainPollutant as keyof typeof import("@/lib/data").pollutantInfo
+          }
+        />
+
+        <Link
+          href={`/indoor-air-quality/${city}`}
+          className="group inline-flex items-center gap-2 text-primary font-medium transition-colors duration-300 hover:text-pink-600 mt-4"
+        >
+          Indoor air quality {cityName}
+          <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+        </Link>
+      </div>
+
+      <RelatedCities country={country} currentPlace={cityName} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
         <h3 className="text-2xl font-bold mb-3">
           Frequently Asked Questions about Air Quality {cityName}
         </h3>

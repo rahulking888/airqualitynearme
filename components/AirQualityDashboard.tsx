@@ -42,7 +42,7 @@ export default function AirQualityDashboard ({place,state,country,aqi,temp,humid
           <h1 className="text-2xl font-bold font-serif mt-3">
             Current Air Quality Index (AQI) {place}
           </h1>
-          <p className="mt-3 text-muted-foreground ">Live AQI data for {place}, {state}, {country}, shows PM2.5 concentration, temperature, humidity and current air quality based on global standards. </p>
+          <p className="mt-3 text-muted-foreground ">The current Air Quality Index (AQI) in {place} is {aqi}, indicating that the air quality condition is {condition}. The dominant pollutant in the atmosphere right now is {mainPollutant}, which primarily affects overall air health. </p>
           <div className="flex flex-wrap items-center justify-between flex-1 gap-4 mt-4">
             {/* Radiation ball and AQI */}
             <div className="flex flex-col">

@@ -11,8 +11,8 @@ type faqProps = {
 
 export default function IndoorFAQ({ place}: faqProps) {
   return (
-    <div className="pl-4 pr-4">
-      <h3 className="font-bold text-2xl">Frequently asked questions about indoor air quality {place}</h3>
+    <div className="py-7">
+      <h3 className="font-bold text-xl">Frequently asked questions about indoor air quality {place}</h3>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
           <AccordionTrigger>

@@ -1,5 +1,8 @@
 import { IndoorPagesSchema } from "@/components/AllSchema/IndoorPagesSchema";
 import FetchLocationData from "@/components/FetchLoacationData";
+import HealthImpact from "@/components/helpers/HealthImpact";
+import RecommendedPractices from "@/components/helpers/RecommendedPractice";
+import SeasonalVariation from "@/components/helpers/SeasonalVariations";
 import IndoorDashboard from "@/components/IndoorDashboard";
 import IndoorFAQ from "@/components/IndoorFAQ";
 import Intro4Indoor from "@/components/Intro4Indoor";
@@ -84,7 +87,7 @@ export default async function IndoorCityPage({
     .join(" ");
 
   const location = await getData(cityName);
-  const { aqi, pm2_5, pm10, so2, no2, o3,ws,condition, temp, humidity } = await getData(cityName);
+  const { aqi, pm2_5, pm10, so2, no2, o3,ws,condition, temp, humidity,mainPollutant } = await getData(cityName);
   let titleCity = cityName;
 
   if (location?.country === "United States") {
@@ -120,7 +123,7 @@ export default async function IndoorCityPage({
         }}
       />
       <h1 className="text-3xl font-bold">{fullTitle}</h1>
-      <Intro4Indoor city={city} aqi={aqi} place={cityName} category={condition}/>
+      <Intro4Indoor city={city} aqi={aqi} place={cityName} category={condition} fulltitle={fullTitle}/>
       
       <div className="py-10">
         <h2 className="text-2xl font-bold">{cityName} Air Quality Data</h2>
@@ -132,9 +135,16 @@ export default async function IndoorCityPage({
           co={no2}
           so2={so2}
           o3={o3}
+          dominantPollutant={mainPollutant}
+          city={cityName}
+         
         />
       </div>
+      <SeasonalVariation city={cityName} dominantPollutant={mainPollutant} />
+       <HealthImpact city={cityName}/>
+      <RecommendedPractices city={cityName} />
       <IndoorFAQ place={cityName}/>
+
     </main>
   );
 }
