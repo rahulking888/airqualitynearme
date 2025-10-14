@@ -1458,6 +1458,7 @@ export const cityData: Record<string, CityInfo> = {
   climate_description: "a semi-arid climate with moderate rainfall and dry air year-round",
   pollution_cause: "vehicle emissions and regional smog from Denver metro area",
   local_factor: "proximity to foothills causing occasional pollution buildup during inversions",
+   image: "/air-quality/lakewood.webp",
 },
 
 "thornton": {
@@ -1651,6 +1652,7 @@ export const cityData: Record<string, CityInfo> = {
   climate_description: "a humid subtropical climate with hot summers and cool winters",
   pollution_cause: "vehicle traffic and regional emissions from Wilmington",
   local_factor: "slightly elevated terrain helping to disperse pollutants more efficiently",
+  image: "/air-quality/hockessin.webp",
 },
 
 "pike-creek-valley": {
@@ -2461,6 +2463,7 @@ export const cityData: Record<string, CityInfo> = {
   climate_description: "a humid continental climate with hot summers and cold winters",
   pollution_cause: "vehicle emissions, urban traffic, and university activity",
   local_factor: "lake breezes generally dispersing pollutants efficiently",
+  image: "/air-quality/evanston.webp",
 },
 
 "arlington-heights": {
@@ -2510,6 +2513,7 @@ export const cityData: Record<string, CityInfo> = {
   climate_description: "a humid continental climate with hot summers and cold winters",
   pollution_cause: "commuter traffic and regional emissions",
   local_factor: "flat terrain allowing moderate pollutant dispersion",
+  image: "/air-quality/orland-park.webp",
 },
 
 "oak-lawn": {

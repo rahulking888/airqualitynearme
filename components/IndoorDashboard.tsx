@@ -35,13 +35,23 @@ export const pollutantInfo: Record<string, PollutantInfo> = {
 type IndoorDashboardProps = {
   city: string;
   aqi: number;
-  dominantPollutant: keyof typeof pollutantInfo;
+  dominantPollutant?: string;
   pm25?: number;
   pm10?: number;
   co?: number;
   no2?: number;
   o3?: number;
   so2?: number;
+};
+
+const keyMap: Record<string, keyof typeof pollutantInfo> = {
+  "PM2.5": "PM2_5",
+  "PM2_5": "PM2_5",
+  PM10: "PM10",
+  NO2: "NO2",
+  SO2: "SO2",
+  O3: "O3",
+  CO: "CO",
 };
 
 const IndoorDashboard: React.FC<IndoorDashboardProps> = ({
@@ -55,9 +65,12 @@ const IndoorDashboard: React.FC<IndoorDashboardProps> = ({
   o3,
   so2,
 }) => {
-  const dominantPollutantName = dominantPollutant.replace("_", "."); // PM2_5 → PM2.5
-  const source = pollutantInfo[dominantPollutant].source;
-  const health = pollutantInfo[dominantPollutant].health;
+  const pollutantKey = dominantPollutant ? keyMap[dominantPollutant] : undefined;
+  const pollutantData = pollutantKey ? pollutantInfo[pollutantKey] : undefined;
+
+  const dominantPollutantName = pollutantKey?.replace("_", ".") ?? "N/A";
+  const source = pollutantData?.source ?? "data not available";
+  const health = pollutantData?.health ?? "information not available";
 
   const pollutants = [
     { name: "PM2.5", value: pm25, unit: "µg/m³", color: "#FF3E3E" },
@@ -68,7 +81,7 @@ const IndoorDashboard: React.FC<IndoorDashboardProps> = ({
     { name: "SO2", value: so2, unit: "ppb", color: "#FF69B4" },
   ].filter((p) => p.value !== undefined);
 
-  // Circle / Gauge settings
+  // Gauge / Circle settings
   const radius = 100;
   const stroke = 14;
   const normalizedRadius = radius - stroke * 2;
@@ -123,14 +136,7 @@ const IndoorDashboard: React.FC<IndoorDashboardProps> = ({
               <text x="50%" y="50%" textAnchor="middle" dy="0.3em" fontSize="34" fontWeight="bold" fill="#111">
                 {aqi}
               </text>
-              <text
-                x="50%"
-                y={radius * 2 - 22}
-                textAnchor="middle"
-                fontSize="20"
-                fontWeight="600"
-                fill="#555"
-              >
+              <text x="50%" y={radius * 2 - 22} textAnchor="middle" fontSize="20" fontWeight="600" fill="#555">
                 AQI
               </text>
             </svg>

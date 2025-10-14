@@ -66,7 +66,7 @@ const IndoorAirSections: React.FC<IndoorAirSectionsProps> = ({ city, dominantPol
       {/* Improve Indoor Air Section */}
       <div>
         <h3 className="text-xl font-bold mb-3">
-          How to Improve Indoor Air Quality in {city}
+          How to Improve Indoor Air Quality
         </h3>
         <p className="mb-3">{improveIntro}</p>
         <ol className="list-decimal list-inside space-y-1">

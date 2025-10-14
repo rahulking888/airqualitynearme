@@ -1,10 +1,11 @@
 import React from "react";
+import { IndoorRelatedCities } from "../IndoorRelatedCities";
 
 type RecommendedPracticesProps = {
   city: string;
 };
 
-const RecommendedPractices: React.FC<RecommendedPracticesProps> = ({ city }) => {
+const RecommendedPractices: React.FC<RecommendedPracticesProps> = ({ city}) => {
   // Optional: slight variation for intro sentence
   const introOptions = [
     `To maintain healthy indoor air in ${city}, consider these practices:`,
@@ -21,13 +22,14 @@ const RecommendedPractices: React.FC<RecommendedPracticesProps> = ({ city }) => 
 
   return (
     <div >
-      <h3 className="text-xl font-bold mb-3">Recommended Air Quality Practices for {city} Homes</h3>
+      <h3 className="text-xl font-bold mb-3">Recommended Air Quality Practices for Homes</h3>
       <p className="mb-3">{intro}</p>
       <ul className="list-disc list-inside space-y-1">
         {practices.map((practice, i) => (
           <li key={i}>{practice}</li>
         ))}
       </ul>
+      
     </div>
   );
 };

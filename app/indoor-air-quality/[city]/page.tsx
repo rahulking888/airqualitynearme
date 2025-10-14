@@ -5,6 +5,7 @@ import RecommendedPractices from "@/components/helpers/RecommendedPractice";
 import SeasonalVariation from "@/components/helpers/SeasonalVariations";
 import IndoorDashboard from "@/components/IndoorDashboard";
 import IndoorFAQ from "@/components/IndoorFAQ";
+import { IndoorRelatedCities } from "@/components/IndoorRelatedCities";
 import Intro4Indoor from "@/components/Intro4Indoor";
 import stateCodesUSA from "@/lib/data";
 
@@ -87,6 +88,7 @@ export default async function IndoorCityPage({
     .join(" ");
 
   const location = await getData(cityName);
+  const country = location.country
   const { aqi, pm2_5, pm10, so2, no2, o3,ws,condition, temp, humidity,mainPollutant } = await getData(cityName);
   let titleCity = cityName;
 
@@ -142,7 +144,8 @@ export default async function IndoorCityPage({
       </div>
       <SeasonalVariation city={cityName} dominantPollutant={mainPollutant} />
        <HealthImpact city={cityName}/>
-      <RecommendedPractices city={cityName} />
+      <RecommendedPractices city={cityName}/>
+      <IndoorRelatedCities currentPlace={city} country={country} fulltitle={fullTitle}/>
       <IndoorFAQ place={cityName}/>
 
     </main>
