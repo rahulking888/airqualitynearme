@@ -34,14 +34,14 @@ export const locations = [
       state: "delaware",
       cities: ["hockessin","pike-creek-valley","claymont","seaford","north-star","wilmington-manor","millsboro","pike-creek","elsmere",],
     },
-    //yaha tak indoor obj complete hai 
+    
     {
       state: "florida",
-      cities: ["jacksonville","miami","tampa","orlando","port-st-lucie","hialeah","cape-coral","tallahassee", "fort-lauderdale","pembroke-pines","hollywood","gainesville","miramar","palm-bay","coral-springs","west-palm-beach","lehigh-acres","lakeland","spring-hill","pompano-beach","clearwater","brandon","miami-gardens","davie","riverview","palm-coast","boca-raton","plantation","deltona","sunrise","fort-myers","north-port","alafaya","deerfield-beach","melbourne","town-n-country","daytona-beach","homestead","kissimmee","doral","miami-beach","boynton-beach","largo","pine-hills","the-villages","kendall","lauderhill","tamarac","poinciana","weston","ocala","delray-beach","port-orange"],
+      cities: ["jacksonville","miami","tampa","orlando","port-st-lucie","hialeah","cape-coral","tallahassee", "fort-lauderdale","pembroke-pines","hollywood","gainesville","miramar","palm-bay","coral-springs","west-palm-beach","lehigh-acres","lakeland","spring-hill","pompano-beach","clearwater","brandon","miami-gardens","davie","riverview","palm-coast","boca-raton","plantation","deltona","sunrise","fort-myers","north-port","alafaya","deerfield-beach", "town-n-country","daytona-beach","homestead","kissimmee","doral","miami-beach","boynton-beach","largo","pine-hills","the-villages","kendall","lauderhill","tamarac","poinciana","weston","ocala","delray-beach","port-orange"],
     },
     {
       state: "georgia",
-      cities: ["atlanta","macon","savannah","athens","south-fulton","sandy-springs","roswell","warner-robins","mableton","alpharetta","marietta","stonecrest","smyrna","valdosta","dunwoody"],
+      cities: ["atlanta","macon","savannah","south-fulton","sandy-springs","roswell","warner-robins","mableton","alpharetta","marietta","stonecrest","smyrna","valdosta","dunwoody"],
     },
     {
       state: "hawaii",
