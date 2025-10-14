@@ -337,6 +337,7 @@ export const cityData: Record<string, CityInfo> = {
   climate_description: "a hot semi-arid climate with warm winters and very hot summers",
   pollution_cause: "agricultural dust, traffic emissions, and ozone formation",
   local_factor: "low-lying desert plains and high temperatures contributing to poor air mixing",
+  image: "/air-quality/marana.webp",
 },
 
 "lake-havasu-city": {
@@ -2535,6 +2536,7 @@ export const cityData: Record<string, CityInfo> = {
   climate_description: "a humid continental climate with hot summers and cold winters",
   pollution_cause: "vehicle traffic and regional urban emissions",
   local_factor: "flat terrain generally allowing moderate dispersion",
+  image: "/air-quality/tinley-park.webp",
 },
 
 "normal": {
