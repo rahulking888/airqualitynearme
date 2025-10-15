@@ -437,6 +437,7 @@ export const cityData: Record<string, CityInfo> = {
   climate_description: "a humid subtropical climate with warm, humid summers and cool winters",
   pollution_cause: "vehicle emissions, suburban development dust, and ozone buildup",
   local_factor: "flat valley topography occasionally trapping pollutants during hot periods",
+   image: "/air-quality/cabot.webp",
 },
 
 "van-buren": {
@@ -2343,6 +2344,7 @@ export const cityData: Record<string, CityInfo> = {
   climate_description: "a semi-arid climate with hot summers and cold winters",
   pollution_cause: "commuter traffic and regional smog from Boise",
   local_factor: "flat inland terrain generally allowing moderate pollutant dispersion",
+   image: "/air-quality/meridian.webp",
 },
 
 "nampa": {

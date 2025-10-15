@@ -1,5 +1,4 @@
 import React from "react";
-import { IndoorRelatedCities } from "../IndoorRelatedCities";
 
 type RecommendedPracticesProps = {
   city: string;
