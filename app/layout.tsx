@@ -67,7 +67,7 @@ export default function RootLayout({
 }
 }
   return (
-    <html lang="en" suppressHydrationWarning >
+    <html lang="en-US" suppressHydrationWarning >
       
       <head>
        <script

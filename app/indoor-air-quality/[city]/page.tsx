@@ -54,6 +54,10 @@ export async function generateMetadata({
     description: metaDescription,
     alternates: {
       canonical: pageUrl,
+      languages: {
+      'en-US': pageUrl,
+      'x-default': pageUrl,
+    },
     },
     openGraph: {
       title: `${titleCity} Air Quality Index (AQI) and Air Pollution`,

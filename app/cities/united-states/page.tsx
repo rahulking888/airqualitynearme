@@ -12,6 +12,7 @@ export async function generateMetadata() {
       "Check the current air quality index (AQI), PM2.5, temperature, and wind conditions in all cities across the United States.",
     alternates: {
       canonical: `${siteURL}/cities/united-states`,
+      
     },
   };
 }

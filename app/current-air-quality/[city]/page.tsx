@@ -32,6 +32,10 @@ export async function generateMetadata({
     description: `The current air quality in ${cityName} is AQI ${aqi} (${condition}). PM2.5: ${pm2_5} µg/m³, Temperature: ${temp}°C, Humidity: ${humidity}%, Wind: ${ws} Km/h - live updates`,
     alternates: {
       canonical: `${siteURL}/current-air-quality/${city}`,
+      languages: {
+        "en-US": `${siteURL}/current-air-quality/${city}`,
+        "x-default": `${siteURL}/current-air-quality/${city}`,
+      },
     },
   };
 }
