@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
 //import Navigation from "@/components/Navigation";
 import NewNavigation from "@/components/NewNavigation";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -75,6 +76,12 @@ export default function RootLayout({
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(schemaData),
         }}
+      />
+      <Script
+        id="adsense-init"
+        strategy="afterInteractive" 
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5703495087334224"
+        crossOrigin="anonymous"
       />
       </head>
       
