@@ -18,21 +18,20 @@ export const metadata: Metadata = {
   title: "Air Quality Near Me",
   description:
     "Air Quality Near Me shows real-time air quality index (AQI) for your location or any city or place. Check current AQI, Pm2.5, humidity, and temperature instantly.",
-    applicationName: "Air Quality Near Me",
-    openGraph:{
-      siteName: "Air Quality Near Me",
-      title: "Air Quality Near Me",
-      description: "Real-time air quality index (AQI) for your location or any city or place. Check current AQI, Pm2.5, humidity, and temperature instantly.",
-      url: "https://airqualitynearme.org",
-      type: "website"
-
-
-    },
-    other: {"apple-mobile-web-app-title": "Airniza",
-            "apple-mobile-web-app-capable": "Yes",
-            "apple-mobile-web-app-status-bar-style": "default"
-
-    }
+  applicationName: "Air Quality Near Me",
+  openGraph: {
+    siteName: "Air Quality Near Me",
+    title: "Air Quality Near Me",
+    description:
+      "Real-time air quality index (AQI) for your location or any city or place. Check current AQI, Pm2.5, humidity, and temperature instantly.",
+    url: "https://airqualitynearme.org",
+    type: "website",
+  },
+  other: {
+    "apple-mobile-web-app-title": "Airniza",
+    "apple-mobile-web-app-capable": "Yes",
+    "apple-mobile-web-app-status-bar-style": "default",
+  },
 };
 
 export default function RootLayout({
@@ -41,50 +40,49 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const schemaData = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Air Quality Near Me",
-  "alternateName": "Current AQI Near Me",
-  "url": "https://airqualitynearme.org/",
-  "description": "Air Qualit Near Me shows real-time air quality for your location or any city or place. Check current air quality index (AQI), PM2.5, humidity, and temperature instantly.",
-  "inLanguage": "en",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Air Quality Near Me",
-    "url": "https://airqualitynearme.org/",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://airqualitynearme.org/logo.png"
-    }
-  },
-  "sameAs": [
-    "https://www.facebook.com/profile.php?id=61579195018666",
-    "https://x.com/air_quality_now",
-  ],
-  "potentialAction": {
-"@type": "SearchAction",
-"target": "https://airqualitynearme.org/search?query={query}",
-"query-input": "required name=query"
-}
-}
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Air Quality Near Me",
+    alternateName: "Current AQI Near Me",
+    url: "https://airqualitynearme.org/",
+    description:
+      "Air Qualit Near Me shows real-time air quality for your location or any city or place. Check current air quality index (AQI), PM2.5, humidity, and temperature instantly.",
+    inLanguage: "en",
+    publisher: {
+      "@type": "Organization",
+      name: "Air Quality Near Me",
+      url: "https://airqualitynearme.org/",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://airqualitynearme.org/logo.png",
+      },
+    },
+    sameAs: [
+      "https://www.facebook.com/profile.php?id=61579195018666",
+      "https://x.com/air_quality_now",
+    ],
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://airqualitynearme.org/search?query={query}",
+      "query-input": "required name=query",
+    },
+  };
   return (
-    <html lang="en-US" suppressHydrationWarning >
-      
+    <html lang="en-US" suppressHydrationWarning>
       <head>
-       <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schemaData),
-        }}
-      />
-      <Script
-        id="adsense-init"
-        strategy="afterInteractive" 
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5703495087334224"
-        crossOrigin="anonymous"
-      />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schemaData),
+          }}
+        />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5703495087334224"
+          crossOrigin="anonymous"
+        ></script>
       </head>
-      
+
       <body className={`${inter.variable} ${playfair.variable} antialiased`}>
         <NewNavigation />
         {children}
