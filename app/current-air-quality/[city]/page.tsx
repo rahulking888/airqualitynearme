@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import SecondParagraph from "@/components/SecondParagraph";
 
+
 // Shared Promise Start
 async function getData(place: string) {
   return FetchLocationData(place);
@@ -104,6 +105,7 @@ export default async function CityPage({
             mainPollutant as keyof typeof import("@/lib/data").pollutantInfo
           }
         />
+        
 
         <Link
           href={`/indoor-air-quality/${city}`}

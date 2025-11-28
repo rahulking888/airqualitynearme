@@ -8,7 +8,7 @@ const quickLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-white py-6">
+    <footer className="bg-[#333333] text-white py-6">
       {/* Quick Links Row */}
       <div className="flex flex-wrap justify-center gap-4 mb-4 px-4 text-sm">
         {quickLinks.map((link, index) => (
@@ -23,8 +23,8 @@ export default function Footer() {
       </div>
 
       {/* Copyright */}
-      <div className="text-center text-xs sm:text-sm text-white">
-        © {new Date().getFullYear()} Air Quality Near Me. All rights reserved.
+      <div className="text-center text-xs sm:text-sm text-gray-400 px-4">
+        © {new Date().getFullYear()} Airniza. All rights reserved.
       </div>
     </footer>
   );
