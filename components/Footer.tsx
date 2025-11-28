@@ -24,7 +24,7 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className="text-center text-xs sm:text-sm text-gray-400 px-4">
-        © {new Date().getFullYear()} Airniza. All rights reserved.
+        © {new Date().getFullYear()} Air Quality Near Me. All rights reserved.
       </div>
     </footer>
   );
