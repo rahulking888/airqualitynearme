@@ -12,7 +12,7 @@ import SecondParagraph from "@/components/SecondParagraph";
 async function getData(place: string) {
   return FetchLocationData(place);
 }
-// Shared Promise End
+// Shared Promise End here
 
 export async function generateMetadata({
   params,
