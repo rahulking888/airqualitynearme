@@ -8,7 +8,7 @@ import { ArrowRight } from "lucide-react";
 import SecondParagraph from "@/components/SecondParagraph";
 
 
-// Shared Promise Start
+// Shared Promise Start here
 async function getData(place: string) {
   return FetchLocationData(place);
 }
