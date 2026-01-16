@@ -14,13 +14,13 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Air Quality Near Me",
+  title: "AirQualityNearMe",
   description:
-    "Air Quality Near Me shows real-time air quality index (AQI) for your location or any city or place. Check current AQI, Pm2.5, humidity, and temperature instantly.",
+    "AirQualityNearMe shows real-time air quality index (AQI) for your location or any city or place. Check current AQI, Pm2.5, humidity, and temperature instantly.",
   applicationName: "Air Quality Near Me",
   openGraph: {
-    siteName: "Air Quality Near Me",
-    title: "Air Quality Near Me",
+    siteName: "AirQualityNearMe",
+    title: "AirQualityNearMe",
     description:
       "Real-time air quality index (AQI) for your location or any city or place. Check current AQI, Pm2.5, humidity, and temperature instantly.",
     url: "https://airqualitynearme.org",
@@ -30,6 +30,10 @@ export const metadata: Metadata = {
     "apple-mobile-web-app-title": "Airniza",
     "apple-mobile-web-app-capable": "Yes",
     "apple-mobile-web-app-status-bar-style": "default",
+
+    // ✅ Added
+    "googlebot": "max-image-preview:large",
+    "robots": "max-image-preview:large",
   },
 };
 
@@ -41,11 +45,11 @@ export default function RootLayout({
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Air Quality Near Me",
-    alternateName: "Current AQI Near Me",
+    name: "AirQualityNearMe",
+    alternateName: "Air Quality Near Me",
     url: "https://airqualitynearme.org/",
     description:
-      "Air Qualit Near Me shows real-time air quality for your location or any city or place. Check current air quality index (AQI), PM2.5, humidity, and temperature instantly.",
+      "AirQualityNearMe shows real-time air quality for your location or any city or place. Check current air quality index (AQI), PM2.5, humidity, and temperature instantly.",
     inLanguage: "en",
     publisher: {
       "@type": "Organization",
@@ -66,6 +70,7 @@ export default function RootLayout({
       "query-input": "required name=query",
     },
   };
+
   return (
     <html lang="en-US" suppressHydrationWarning>
       <head>
@@ -75,7 +80,14 @@ export default function RootLayout({
             __html: JSON.stringify(schemaData),
           }}
         />
-        
+
+        {/* ✅ RSS Feed */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="AirQualityNearMe RSS Feed"
+          href="/rss"
+        />
       </head>
 
       <body className={`${inter.variable} ${playfair.variable} antialiased`}>
