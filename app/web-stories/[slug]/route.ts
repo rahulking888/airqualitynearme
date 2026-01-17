@@ -147,7 +147,7 @@ export async function GET(
     publisher-logo-src="${siteUrl}/web-stories/logo.png"
     poster-portrait-src="${posterUrl}"
   >
-    <amp-story-auto-analytics gtag-id="G-C4HYV9CTDC"></amp-story-auto-analytics>
+    <amp-story-auto-analytics gtag-id="G-BF1PGSRTWP"></amp-story-auto-analytics>
 
     ${story.pages
       .map(
