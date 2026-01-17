@@ -1,0 +1,75 @@
+{
+  "title": "Breaking: Air Quality Worsens Across California as AQI Hits Unhealthy Levels",
+  "description": "Several California cities are reporting deteriorating air quality today as PM2.5 pollution pushes AQI levels into poor and unhealthy categories.",
+  "publishDate": "2026-01-17T16:55:45.262Z",
+  "poster": "/web-stories/breaking-air-quality-worsens-across-california-as-aqi-hits-unhealthy-levels/poster.jpg",
+  "pages": [
+    {
+      "title": "California Air Quality Alert",
+      "image": "/web-stories/breaking-air-quality-worsens-across-california-as-aqi-hits-unhealthy-levels/01.jpg",
+      "description": "Air quality has sharply declined across parts of California today. Multiple cities are now reporting poor to unhealthy AQI levels."
+    },
+    {
+      "title": "What’s Causing the Decline?",
+      "image": "/web-stories/breaking-air-quality-worsens-across-california-as-aqi-hits-unhealthy-levels/02.jpg",
+      "description": "Fine particle pollution, known as PM2.5, is driving today’s air quality concerns. These tiny particles can penetrate deep into the lungs and affect health."
+    },
+    {
+      "title": "Carmichael",
+      "image": "/web-stories/breaking-air-quality-worsens-across-california-as-aqi-hits-unhealthy-levels/03.jpg",
+      "description": "Carmichael is reporting an AQI of 155 today. Air quality is unhealthy, and residents are advised to limit outdoor exposure."
+    },
+    {
+      "title": "Alameda",
+      "image": "/web-stories/breaking-air-quality-worsens-across-california-as-aqi-hits-unhealthy-levels/04.jpg",
+      "description": "With an AQI of 67, air quality in Alameda remains moderate. Most people are safe outdoors, but sensitive individuals should stay cautious."
+    },
+    {
+      "title": "Milpitas",
+      "image": "/web-stories/breaking-air-quality-worsens-across-california-as-aqi-hits-unhealthy-levels/05.jpg",
+      "description": "Milpitas has recorded an AQI of 116, signaling poor air quality. People with respiratory conditions may experience breathing discomfort."
+    },
+    {
+      "title": "Newport Beach",
+      "image": "/web-stories/breaking-air-quality-worsens-across-california-as-aqi-hits-unhealthy-levels/06.jpg",
+      "description": "Newport Beach is seeing an AQI of 134 today. Air quality is poor, and outdoor activities should be reduced."
+    },
+    {
+      "title": "Perris",
+      "image": "/web-stories/breaking-air-quality-worsens-across-california-as-aqi-hits-unhealthy-levels/07.jpg",
+      "description": "Perris has entered the unhealthy category with an AQI of 162. Health impacts are more likely, especially for vulnerable groups."
+    },
+    {
+      "title": "Mission Viejo",
+      "image": "/web-stories/breaking-air-quality-worsens-across-california-as-aqi-hits-unhealthy-levels/08.jpg",
+      "description": "Mission Viejo is reporting an AQI of 137. Poor air quality may cause irritation during prolonged outdoor activity."
+    },
+    {
+      "title": "San Marcos",
+      "image": "/web-stories/breaking-air-quality-worsens-across-california-as-aqi-hits-unhealthy-levels/09.jpg",
+      "description": "San Marcos has reached an AQI of 153 today. Extended exposure could affect everyone, not just sensitive groups."
+    },
+    {
+      "title": "Jurupa Valley",
+      "image": "/web-stories/breaking-air-quality-worsens-across-california-as-aqi-hits-unhealthy-levels/10.jpg",
+      "description": "Jurupa Valley is among the worst affected with an AQI of 167. Residents are urged to avoid outdoor exercise."
+    },
+    {
+      "title": "Torrance",
+      "image": "/web-stories/breaking-air-quality-worsens-across-california-as-aqi-hits-unhealthy-levels/11.jpg",
+      "description": "Torrance is currently at an AQI of 98. Air quality is moderate, but conditions could change quickly."
+    },
+    {
+      "title": "Corona",
+      "image": "/web-stories/breaking-air-quality-worsens-across-california-as-aqi-hits-unhealthy-levels/12.jpg",
+      "description": "Corona is also reporting unhealthy air with an AQI of 167. Reducing time spent outdoors is strongly recommended."
+    },
+    {
+      "title": "Health Advisory",
+      "image": "/web-stories/breaking-air-quality-worsens-across-california-as-aqi-hits-unhealthy-levels/13.jpg",
+      "description": "Officials advise residents to stay indoors when possible. Keep windows closed, use air purifiers, and follow local air quality alerts.",
+      "ctaText": "Check Live AQI",
+      "ctaLink": "https://airqualitynearme.org/"
+    }
+  ]
+}
