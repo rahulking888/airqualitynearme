@@ -2,9 +2,9 @@ import ContactPageHelper from "@/components/helpers/ContactPageHelper";
 
 export const metadata = {
   title: "Contact Us",
-  description: "Airniza Contact Us page",
+  description: "AirQualityNearMe Contact Us page",
   alternates: {
-    canonical: "https://airniza.com/contact-us",
+    canonical: "https://airqualitynearme.org/contact-us",
   },
 };
 

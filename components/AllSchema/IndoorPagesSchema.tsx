@@ -54,10 +54,10 @@ export function IndoorPagesSchema({
       isPartOf: {
         "@type": "WebSite",
         url: "https://airqualitynearme.org",
-        name: "Air Quality Near Me",
+        name: "AirQualityNearMe",
       },
-      author: { "@type": "Organization", name: "Air Quality Near Me" },
-      publisher: { "@type": "Organization", name: "Air Quality Near Me" },
+      author: { "@type": "Organization", name: "AirQualityNearMe" },
+      publisher: { "@type": "Organization", name: "AirQualityNearMe" },
       mainEntity: {
         "@type": "Thing",
         name: `Indoor Air Quality Data for ${City}`,
@@ -99,7 +99,7 @@ export function IndoorPagesSchema({
       name: `Current Air Quality Index (Aqi) for ${City}`,
       description: `Indoor air quality data for ${City}. Check indoor air quality updates`,
       url: `https://airqualitynearme.org/indoor-air-quality/${citySlug}`,
-      creator: { "@type": "Organization", name: "Air Quality Near Me", url: "https://airqualitynearme.org" },
+      creator: { "@type": "Organization", name: "AirQualityNearMe", url: "https://airqualitynearme.org" },
       license: "https://creativecommons.org/licenses/by/4.0/",
       spatialCoverage: { "@type": "Place", name: City },
       variableMeasured: [

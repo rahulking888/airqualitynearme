@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "AirQualityNearMe",
   description:
     "AirQualityNearMe shows real-time air quality index (AQI) for your location or any city or place. Check current AQI, Pm2.5, humidity, and temperature instantly.",
-  applicationName: "Air Quality Near Me",
+  applicationName: "AirQualityNearMe",
   openGraph: {
     siteName: "AirQualityNearMe",
     title: "AirQualityNearMe",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   other: {
-    "apple-mobile-web-app-title": "Airniza",
+    "apple-mobile-web-app-title": "AirQualityNearMe",
     "apple-mobile-web-app-capable": "Yes",
     "apple-mobile-web-app-status-bar-style": "default",
 
@@ -46,14 +46,14 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "AirQualityNearMe",
-    alternateName: "Air Quality Near Me",
+    alternateName: "AirQualityNearMe",
     url: "https://airqualitynearme.org/",
     description:
       "AirQualityNearMe shows real-time air quality for your location or any city or place. Check current air quality index (AQI), PM2.5, humidity, and temperature instantly.",
     inLanguage: "en",
     publisher: {
       "@type": "Organization",
-      name: "Air Quality Near Me",
+      name: "AirQualityNearMe",
       url: "https://airqualitynearme.org/",
       logo: {
         "@type": "ImageObject",

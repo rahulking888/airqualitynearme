@@ -25,11 +25,11 @@ export function CitySchema ({City,Aqi,Pm2five,Temp,Humidity,Ws,Condition,citySlu
       inLanguage: "en",
       author: {
         "@type": "Organization",
-        name: "Air Quality Near Me",
+        name: "AirQualityNearMe",
       },
       publisher: {
         "@type": "Organization",
-        name: "Air Quality Near Me",
+        name: "AirQualityNearMe",
       },
       mainEntity: {
         "@type": "Thing",
@@ -98,7 +98,7 @@ export function CitySchema ({City,Aqi,Pm2five,Temp,Humidity,Ws,Condition,citySlu
       url: `https://airqualitynearme.org/current-air-quality/${citySlug}`,
       creator: {
         "@type": "Organization",
-        name: "Air Quality Near Me",
+        name: "AirQualityNearMe",
         url: "https://airqualitynearme.org",
       },
       license: "https://creativecommons.org/licenses/by/4.0/",

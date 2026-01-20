@@ -63,7 +63,7 @@ export async function generateMetadata({
       title: `${titleCity} Air Quality Index (AQI) and Air Pollution`,
       description: metaDescription,
       url: pageUrl,
-      siteName: "Air Quality Near Me",
+      siteName: "AirQualityNearMe",
       locale: "en_US",
       type: "website",
      

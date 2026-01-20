@@ -1,6 +1,6 @@
 {
-  "name": "Air Quality Near Me",
-  "short_name": "Air Quality Near Me",
+  "name": "AirQualityNearMe",
+  "short_name": "AirQualityNearMe",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
