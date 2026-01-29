@@ -16,7 +16,6 @@ export default function ImagePara({
   const data: CityInfo | undefined = cityData[city];
   if (!data) return null;
 
-  const displayName = cityName ?? city.replace(/-/g, " ");
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-5 py-5">

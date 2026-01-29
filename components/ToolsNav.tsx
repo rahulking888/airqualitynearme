@@ -1,9 +1,8 @@
 import { navItems } from "@/lib/constants";
 import Link from "next/link";
 import MobileNavigation from "./MobileNavigation";
-import LocationSearch from "./LocationSearch";
 
-export default function NewNavigation() {
+export default function ToolsNav() {
   return (
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,20 +13,14 @@ export default function NewNavigation() {
           <div className="shrink-0">
             <Link href={"/"}>
               <p className="text-xl font-serif font-bold text-foreground">
-                <span className="text-primary">AirQuality</span><span className="text-destructive">NearMe</span>
+                <span className="text-primary">AirQuality</span>
+                <span className="text-destructive">NearMe</span>
               </p>
             </Link>
           </div>
 
-          {/* Desktop Search */}
-          <div className="hidden md:flex flex-1 justify-center mx-6">
-            <div className="max-w-md w-full">
-              <LocationSearch />
-            </div>
-          </div>
-
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 ml-auto">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -45,10 +38,6 @@ export default function NewNavigation() {
           </div>
         </div>
 
-        {/* Mobile Search (separate row) */}
-        <div className="block md:hidden pb-3">
-          <LocationSearch />
-        </div>
       </div>
     </nav>
   );
